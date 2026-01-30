@@ -27,7 +27,8 @@ const filtered = computed(() => {
 });
 
 async function api(url, opts) {
-  const res = await fetch(url, opts);
+  const base = import.meta.env.PROD ? "https://minilibary.onrender.com" : "";
+  const res = await fetch(base + url, opts);
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.error || "Hiba történt.");
   return data;
