@@ -1,8 +1,6 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
 
 import { initDb, listBooks, createBook, updateBook, deleteBook } from "./db.js";
 
@@ -11,10 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-/* ================= DB INIT ================= */
 await initDb();
-
-/* ================= API ROUTES ================= */
 
 app.get("/api/books", async (req, res, next) => {
   try {
@@ -57,32 +52,12 @@ app.post("/api/shutdown", (req, res) => {
   setTimeout(() => process.exit(0), 200);
 });
 
-/* ================= FRONTEND SERVE (CSAK PROD) ================= */
-
-if (process.env.NODE_ENV === "production") {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename);
-  const publicDir = path.join(__dirname, "public");
-
-  app.use(express.static(publicDir));
-
-  // Express 5 kompatibilis wildcard
-  app.get("/*", (req, res) => {
-    res.sendFile(path.join(publicDir, "index.html"));
-  });
-}
-
-/* ================= ERROR HANDLER ================= */
-
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ error: "Server error" });
 });
 
-/* ================= START SERVER ================= */
-
 const PORT = process.env.PORT || 3001;
-
 app.listen(PORT, () => {
   console.log(`API running on http://localhost:${PORT}`);
 });
