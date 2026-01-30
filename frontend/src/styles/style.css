@@ -1,0 +1,79 @@
+body {
+  font-family: system-ui, Arial, sans-serif;
+  margin: 24px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+input,
+select,
+button {
+  padding: 10px;
+  font-size: 14px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 12px;
+}
+
+.muted {
+  color: #666;
+  font-size: 13px;
+}
+
+.danger {
+  color: #b00020;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+th,
+td {
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+  text-align: left;
+}
+
+.actions button {
+  margin-right: 8px;
+}
+
+.input-wide {
+  flex: 1;
+  min-width: 220px;
+}
+
+.search {
+  min-width: 260px;
+}
+
+.date {
+  width: 220px;
+}
+
+.borrowed-hint {
+  align-self: center;
+}
